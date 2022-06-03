@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apoyo Prueba 2</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">Menú</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+          <div class="navbar-nav">
+            <a class="nav-item nav-link" href="index.html">Inicio </a>
+            <a class="nav-item nav-link" href="sistema_alerta.html">Sistema de alerta</a>
+            <a class="nav-item nav-link" href="contacto.html">Contacto </a>
+          </div>
+        </div>
+      </nav>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <form id="form1" name="form1" action="#">
+                    <fieldset>
+                        <legend>Sistema de alerta</legend>    
+                        <div class="form-group">
+                            <label for="id_alerta">Tipo de alerta:</label>
+                            <select id="id_alerta" class="form-control">
+                                <option value="0">Seleccione un tipo de alerta…</option>
+                                <option value="ultimos_sismos_chile">Últimos 15 terremotos</option>
+                                <option value="tsunami_chile">Últimos 16 boletines de Tsunami</option>
+                                <option value="ultimos_sismos">Ultimos sismos en el mundo</option>
+                                <option value="onemi">Ultima informacion de onemi</option>
+                            </select>
+                            <br>
+                        </div> 
+                    </fieldset>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table" id="table_ultimos_sismos">
+                    <thead>
+                      <tr>
+                        <th scope="col">Referencia</th>
+                        <th scope="col">Magnitud</th>
+                        <th scope="col">Latitud</th>
+                        <th scope="col">Longitud</th>
+                        <th scope="col">Hora</th>
+                      </tr>
+                    </thead>
+                    <tbody id="tbody_disasters">
+                      
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>   
+    <script src="js/alerta.js"></script>
+    <script>
+       $('#id_alerta').change(function() {
+        var alerta_value = $("#id_alerta").val();
+        $.get(getBasePath(alerta_value),
+        function(data) {
+          //console.log(data)
+          $("#tbody_disasters tr").remove();
+          switch (alerta_value) {
+            case "tsunami_chile":
+              $.each(data.tsunami_chile, function(i, {reference, magnitude, latitude, longitude, local_time}){
+                $("#tbody_disasters").append(createRowDisaster(reference, magnitude, latitude, longitude, local_time));
+              })
+              break;
+            case "ultimos_sismos_chile":
+              $.each(data.ultimos_sismos_chile, function(i, {reference, magnitude, latitude, longitude, local_time}){
+                $("#tbody_disasters").append(createRowDisaster(reference, magnitude, latitude, longitude, local_time));
+              })
+              break;
+            case "ultimos_sismos":
+              $.each(data.ultimos_sismos, function(i, {reference, magnitude, latitude, longitude, local_time}){
+                $("#tbody_disasters").append(createRowDisaster(reference, magnitude, latitude, longitude, local_time));
+              })
+              break;
+            case "onemi":
+              $.each(data.onemi, function(i, {state, url, post_title, alert_region, alert_date}){
+                $("#tbody_disasters").append(createRowDisaster2(state, url, post_title, alert_region, alert_date));
+              })
+              break;
+          }
+        })
+      })
+
+  </script>
+</body>
+</html>

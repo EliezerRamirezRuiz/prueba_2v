@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>AyudaPeludo</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+		/>
+		<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+	</head>
+	<body>
+		<div class="container-fluid">
+			<nav
+				class="navbar navbar-expand-lg navbar-dark bg-dark"
+			>
+				<div class="collapse navbar-collapse" id="navbarSupportedContent">
+					<ul class="navbar-nav mr-auto">
+						<li class="nav-item active">
+							<a class="nav-link" href="./index.html"
+								>Inicio <span class="sr-only">(current)</span></a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="sistema_alerta.html"
+								>Sistema de alerta</a
+							>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="contacto.html">Contacto</a>
+						</li>
+					</ul>
+				</div>
+			</nav>
+			<div class="container pt-5 mb-5">
+				<div class="row">
+					<div class="col">
+						<img src="1366_2000.jpg" class="img-fluid mr-5 pr-5" alt="">
+					</div>
+				</div>
+			</div>
+			<div id="dashboard">
+				<div class="display-1 text-center">DASHBOARD</div>
+				<div class="display-5 text-muted text-center">si no se muestra bien la informacion reiniciar pagina, ya  que en prueba si funciono, verifique codigo</div>
+				<div class="row my-5">
+					<div class="col-md-12">
+						<div class="card m-1" style="width: 30rem">
+							<div class="card-body" id="ultimos_sismos_chile">
+								<h5 class="card-title">Ultimos sismos</h5>
+								<ul></ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12">
+						<div class="card m-1" style="width: 30rem">
+							<div class="card-body" id="tsunami_chile">
+								<h5 class="card-title">Tsunamis</h5>
+								<ul></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-12 m-1">
+						<div class="card" style="width: 30rem">
+							<div class="card-body" id="onemi">
+								<h5 class="card-title">Onemi</h5>
+								<ul></ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-12 m-1">
+						<div class="card" style="width: 30rem">
+							<div class="card-body" id="ultimos_sismos">
+								<h5 class="card-title">Ultimos 15 sismos</h5>
+								<ul></ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="display-5 text-center">Copyright &copy; Devpractical.com</div>
+
+	</footer>
+
+		<script>
+			$(document).ready(() => onInitIndex());
+		</script>
+	</body>
+</html>
